@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+var arr=[12,8,99,19,112];
+
+//arr.sort();
+//alert(arr);//弹出的排序没有按数值大小排，而是按开头的1、2..因为计算机把数字当成字符串处理了
+
+
+//解决方法：sort是可以有一个参数的，而这个参数是函数，会把这个函数叫比较函数
+arr.sort(function(n1,n2)//n1 n2是通过sort传进来的，函数通过返回不同的值告诉数组谁大谁小
+{
+	return n1-n2;//跟下面注释掉的是差不多的
+	/*if(n1<n2)
+	{
+		return -1;//-1不一定是-1，只要是负数就行了
+	}
+	else if(n1>n2)
+	{
+		return 1;//只要是正数就行
+	}
+	else
+	{
+		return 0;
+	}*/
+})
+alert(arr);
+</script>
+</head>
+
+<body>
+</body>
+</html>

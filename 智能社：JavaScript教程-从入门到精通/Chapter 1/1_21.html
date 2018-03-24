@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+alert('abc'+'def');
+alert('abc'+'def'+12);
+alert('abc'+12+5+'def');//注意：弹出的不是abc17def
+//计算机做这个加法的时候，会先'abc12'+'5'+'def'
+//'abc125'+'def'
+alert('abc'+(12+5)+'def');
+</script>
+</head>
+
+<body>
+</body>
+</html>

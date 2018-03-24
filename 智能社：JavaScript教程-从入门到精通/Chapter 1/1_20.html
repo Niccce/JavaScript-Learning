@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+li{ text-align:center; width:100px; height:100px; float:left; margin:0 auto; list-style-type:none; border:1px solid #666;}
+.active {background:yellow; color:#000;}
+.calendar {width:400px; height:600px; margin:0 auto; border:1px solid #000; background:#999; color:#FFF;}
+.activity { float:left; margin:0 auto;}
+</style>
+<script>
+window.onload=function()
+{
+	var arr=[
+	'快过年了,大家可以商量着去哪儿玩吧~',
+	'寒假快要完了啊'
+	];
+	var oDiv=document.getElementById('tab');
+	var aLi=oDiv.getElementsByTagName('li');
+	var oTxt=oDiv.getElementsByTagName('div')[0];
+	
+	for(var i=0;i<aLi.length;i++)
+	{
+		aLi[i].index=i;//给每个li加个编号
+		aLi[i].onmouseover=function()
+		{
+			for(var i=0;i<aLi.length;i++)
+			{
+				aLi[i].className='';
+			}
+			this.className='active';
+			oTxt.innerHTML='<h2>'+(this.index+1)+'月活动</h2><p>'+arr[this.index]+'</p>';
+		}
+	}
+}
+</script>
+</head>
+
+<body>
+
+<div id="tab" class="calendar">
+	<ul>
+    	<li class="active"><h2>1</h2><p>Jan</p></li>
+        <li><h2>2</h2><p>Feb</p></li>
+        <li><h2>3</h2><p>Mar</p></li>
+        <li><h2>4</h2><p>Apr</p></li>
+        <li><h2>5</h2><p>May</p></li>
+        <li><h2>6</h2><p>Jun</p></li>
+        <li><h2>7</h2><p>Jul</p></li>
+        <li><h2>8</h2><p>Aug</p></li>
+        <li><h2>9</h2><p>Sep</p></li>
+        <li><h2>10</h2><p>Oct</p></li>
+        <li><h2>11</h2><p>Nov</p></li>
+        <li><h2>12</h2><p>Dec</p></li>
+    </ul>
+    
+    <div class="activity">
+    	<h2>1月活动</h2>
+        <p>快过年了,大家可以商量着去哪儿玩吧~</p>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+var a=5;
+var b='5';
+var c='2';
+alert(a==b);//弹出true     先转换类型，再比较
+alert(a===b);//弹出false   ===全等，不转换类型，直接比
+alert(b-c);
+//结合例2_2，为什么字符串不能相加，却能相减？
+//原因：+号在js里有两个功能1.连接字符串；2.数字相加；计算机当然选简单的来做，不用转换，直接把字符串连起来
+//而-号在js里只有数字相减一个作用，所以计算机没得选，只好转换了之后再相减
+</script>
+</head>
+
+<body>
+</body>
+</html>

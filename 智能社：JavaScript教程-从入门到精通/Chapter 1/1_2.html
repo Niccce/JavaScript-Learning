@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#div1 {
+	width:200px;
+	height:200px;
+	background:red;
+}
+</style>
+<script>
+function turnGreen()
+{
+	var oDiv=document.getElementById('div1');
+	oDiv.style.width='300px';
+	oDiv.style.height='300px';
+	oDiv.style.background='green';
+}
+function turnRed()
+{
+	document.getElementById('div1').style.width='200px';
+	document.getElementById('div1').style.height='200px';
+	document.getElementById('div1').style.background='red';
+}
+</script>
+</head>
+
+<body>
+<div id="div1" onmouseover="turnGreen()" onmouseout="turnRed()">
+</div>
+</body>
+</html>

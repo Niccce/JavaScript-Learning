@@ -1,0 +1,20 @@
+2_1 弹出数据类型
+2_2 显示数据类型转换，求和小例子
+2_3 isNaN()应用、NaN不等于NaN
+2_4 隐式类型转换【数字和字符串比较、字符串相减】
+2_5 闭包简单例子
+2_6 隔行变色
+2_7 秒数转时间
+2_8 switch小例子
+2_9 break、continue
+2_10 Json、Json和数组的共同、不同点
+2_11 不定个数的参数求和，arguments的运用
+2_12 css函数，arguments的运用2
+2_12-2 css函数修改版，增加可读性
+2_13 obj. currentStyle[attr]、getComputedStyle(obj,false)[attr]获取非行间样式
+2_13-2 上一个例子的简化，将解决兼容部分的内容封装成函数
+2_14 设置数组length
+2_15 push、pop、unshift、shift
+2_16 splice的使用
+2_17 sort排序字符串数组、concat、join
+2_18 sort排序数字数组
