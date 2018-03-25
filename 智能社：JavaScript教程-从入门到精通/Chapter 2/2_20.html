@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+function turnDou(num)//把获取的时间都转换成两位数和字符串
+{
+	if(num<10)
+	{
+		return '0'+num;
+	}
+	else
+	{
+		return ''+num;//这样可以保证返回出去的是一定是字符串
+	}
+}
+window.onload=function()
+{
+	var aImg=document.getElementsByTagName('img');
+	
+	function time()//获取时间
+	{
+		var oDate=new Date();
+		var str=turnDou(oDate.getHours())+turnDou(oDate.getMinutes())+turnDou(oDate.getSeconds());
+		
+		for(var i=0;i<aImg.length;i++)
+		{
+			aImg[i].src='images/'+str.charAt(i)+'.png';//str[i]替换成str.charAt(i)解决ie其他版本的兼容性
+		}
+	}
+	setInterval(time,1000);
+	time();//试一下把这行注释掉，会发现时间有1s延迟显示，为了解决这个问题，加上这句，先让函数执行一次，把原始00:00:00的时间改了，再继续跟着定时器更新时间
+	
+};
+</script>
+</head>
+
+<body style="background:black; color:#FFF; font-size:200px;">
+<img src="images/0.png" />
+<img src="images/0.png" />
+:
+<img src="images/0.png" />
+<img src="images/0.png" />
+:
+<img src="images/0.png" />
+<img src="images/0.png" />
+</body>
+</html>

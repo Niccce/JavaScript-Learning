@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+	var obtn1=document.getElementById('btn1');
+	var obtn2=document.getElementById('btn2');
+	obtn1.onclick=function()
+	{//这里定时器中的function也可以拿出来，给它个名字show，然后定时器写成setInterval(show,1500)
+		timer=setInterval(function(){
+			alert('a');
+		},1500);
+	};
+	obtn2.onclick=function()
+	{
+		clearInterval(timer);
+	};
+};
+</script>
+</head>
+
+<body>
+<input type="button" id="btn1" value="开启定时器" />
+<input type="button" id="btn2" value="关闭定时器" />
+</body>
+</html>
