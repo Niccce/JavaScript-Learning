@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+	var oUl=document.getElementById('ul1');
+	
+	alert(oUl.childNodes.length);//在Chrome、FF、360中会弹出5，而低版本IE反而正常为2,弹出5的原因是，浏览器把三段文本结点算进去了，虽然那些文本是空的
+
+	for(var i=0;i<oUl.childNodes.length;i++)
+	{
+		//oUl.childNodes[i].style.background='red';//在ie低版本下没问题，但是在Chrome反而不行，因为你没办法将文本结点加个background啊，浏览器还会报错
+		
+		//alert(oUl.childNodes[i].nodeType);
+		
+		//nodeType==3就是文本结点、==1就是元素结点
+		
+		if(oUl.childNodes[i].nodeType==1)
+		{
+			oUl.childNodes[i].style.background='red';//这种方法就适用于大部分高级浏览器了
+		}
+	}
+
+
+};
+
+
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li></li>
+    <li></li>
+</ul>
+
+ahsjdfhksajf 这种是文本结点
+<span>dhasufdh 这种是元素结点</span>
+</body>
+</html>

@@ -1,0 +1,9 @@
+3_01 childNodes、nodeType
+3_02 通过children修改background为red
+3_03 弹出parentNode
+3_04 parentNode小应用，点击链接隐藏其父节点
+3_05 offsetParent作用
+3_06 firstChild和firstElementChild对比
+3_07 Dom方式操作元素属性setAttribute()
+3_08 用className选择元素
+3_09 把3_08封装成函数

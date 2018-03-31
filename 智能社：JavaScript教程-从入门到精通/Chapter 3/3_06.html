@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+	var oUl=document.getElementById('ul1');
+	//alert(oUl.firstChild);//firstChild在高版本浏览器中是有定义的，所以if的判断条件不能是它
+	//alert(oUl.firstElementChild);//firstElementChild在IE低版本浏览器中没有定义
+	if(oUl.firstElementChild)
+	{
+		//高级浏览器可用
+		oUl.firstElementChild.style.background='red';
+	}
+	else
+	{
+		//IE6-8可用
+		oUl.firstChild.style.background='red';
+	}
+};
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+</body>
+</html>

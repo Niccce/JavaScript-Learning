@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+	var aA=document.getElementsByTagName('a');
+	for(var i=0;i<aA.length;i++)
+	{
+		aA[i].onclick=function()
+		{
+			this.parentNode.style.display='none';
+		}
+	}
+};
+
+
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li>165416f6sdf<a href="javascript:;">隐藏</a></li>
+    <li>165df<a href="javascript:;">隐藏</a></li>
+    <li>sdasd16f6sdf<a href="javascript:;">隐藏</a></li>
+    <li>16541daf<a href="javascript:;">隐藏</a></li>
+    <li>dsad4=df<a href="javascript:;">隐藏</a></li>
+</ul>
+</body>
+</html>

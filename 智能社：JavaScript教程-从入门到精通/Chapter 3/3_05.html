@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#div1 { width:200px; height:200px;background:#ccc; margin:100px; position:relative;}
+#div2 { width:100px; height:100px;background:red; position:absolute; left:50px; top:50px;}
+</style>
+<script>
+window.onload=function()
+{
+	var oDiv2=document.getElementById('div2');
+	
+	alert(oDiv2.offsetParent);//用来获取某元素用来定位的父级，如果把div1的position删掉，那div2就会变成根据body来定位，位置会发生变化，弹出的东西也会变，可以试试
+}
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<div id="div2"></div>
+</div>
+</body>
+</html>
