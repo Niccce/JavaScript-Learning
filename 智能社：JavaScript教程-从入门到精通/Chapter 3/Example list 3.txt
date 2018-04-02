@@ -7,3 +7,6 @@
 3_07 Dom方式操作元素属性setAttribute()
 3_08 用className选择元素
 3_09 把3_08封装成函数
+3_10 createElement(标签名)、appendChild(节点)
+3_11 insertBefore(节点,原有节点)
+3_12 removeChild(节点)
