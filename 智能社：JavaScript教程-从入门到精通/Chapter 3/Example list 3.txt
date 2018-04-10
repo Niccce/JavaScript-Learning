@@ -1,12 +1,13 @@
-3_01 childNodes¡¢nodeType
-3_02 Í¨¹ıchildrenĞŞ¸ÄbackgroundÎªred
-3_03 µ¯³öparentNode
-3_04 parentNodeĞ¡Ó¦ÓÃ£¬µã»÷Á´½ÓÒş²ØÆä¸¸½Úµã
-3_05 offsetParent×÷ÓÃ
-3_06 firstChildºÍfirstElementChild¶Ô±È
-3_07 Dom·½Ê½²Ù×÷ÔªËØÊôĞÔsetAttribute()
-3_08 ÓÃclassNameÑ¡ÔñÔªËØ
-3_09 °Ñ3_08·â×°³Éº¯Êı
-3_10 createElement(±êÇ©Ãû)¡¢appendChild(½Úµã)
-3_11 insertBefore(½Úµã,Ô­ÓĞ½Úµã)
-3_12 removeChild(½Úµã)
+3_01 childNodesã€nodeType
+3_02 é€šè¿‡childrenä¿®æ”¹backgroundä¸ºred
+3_03 å¼¹å‡ºparentNode
+3_04 parentNodeå°åº”ç”¨ï¼Œç‚¹å‡»é“¾æ¥éšè—å…¶çˆ¶èŠ‚ç‚¹
+3_05 offsetParentä½œç”¨
+3_06 firstChildå’ŒfirstElementChildå¯¹æ¯”
+3_07 Domæ–¹å¼æ“ä½œå…ƒç´ å±æ€§setAttribute()
+3_08 ç”¨classNameé€‰æ‹©å…ƒç´ 
+3_09 æŠŠ3_08å°è£…æˆå‡½æ•°
+3_10 createElement(æ ‡ç­¾å)ã€appendChild(èŠ‚ç‚¹)
+3_11 insertBefore(èŠ‚ç‚¹,åŸæœ‰èŠ‚ç‚¹)
+3_12 removeChild(èŠ‚ç‚¹)
+3_13 
