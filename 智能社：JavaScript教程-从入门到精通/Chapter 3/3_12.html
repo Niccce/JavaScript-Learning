@@ -14,7 +14,7 @@ window.onload=function()
 		aA[i].onclick=function()
 		{
 			//父级.removeChild(子节点)
-			oUl.removeChild(this.parentNode);
+			oUl.removeChild(this.parentNode);//this指的是a，remove的是a的父级
 		}
 	}
 };

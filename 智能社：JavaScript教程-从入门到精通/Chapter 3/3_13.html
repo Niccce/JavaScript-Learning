@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+	var oUl=document.getElementById('ul1');
+	for(var i=0;i<10000;i++)
+	{
+		var oLi=document.createElement('li');
+		oUl.appendChild(oLi);//IE低版本浏览器中打开就会慢
+	}
+};
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+</ul>
+</body>
+</html>
