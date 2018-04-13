@@ -10,4 +10,6 @@
 3_10 createElement(标签名)、appendChild(节点)
 3_11 insertBefore(节点,原有节点)
 3_12 removeChild(节点)
-3_13 
+3_13 文档碎片（插入一次刷新一次）
+3_14 文档碎片（插入完，再一次性添加，只刷新一次）
+3_15 表格的简易操作（tBodies、tHead、tFoot、rows、cells）

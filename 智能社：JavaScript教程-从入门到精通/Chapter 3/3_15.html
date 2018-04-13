@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+	var oTab=document.getElementById('tab1');
+	
+	//获取表格第一个tbody的第二行的第二个单元格
+	
+			//alert(oTab.getElementsByTagName('tbody')[0].getElementsByTagName('tr')[1].getElementsByTagName('td')[1].innerHTML);
+	
+	//等于上面操作的简易操作
+	alert(oTab.tBodies[0].rows[1].cells[1].innerHTML);
+};
+</script>
+</head>
+
+<body>
+<table id="tab1" border="1" width="500">
+	<thead>
+    	<td>ID</td>
+        <td>姓名</td>
+        <td>年龄</td>
+    </thead>
+    <tbody>
+    	<tr>
+        	<td>1</td>
+            <td>Blue</td>
+            <td>27</td>
+        </tr>
+        <tr>
+        	<td>2</td>
+            <td>yellow</td>
+            <td>56</td>
+        </tr>
+        <tr>
+        	<td>3</td>
+            <td>pink</td>
+            <td>14</td>
+        </tr>
+        <tr>
+        	<td>4</td>
+            <td>black</td>
+            <td>9</td>
+        </tr>
+        <tr>
+        	<td>5</td>
+            <td>green</td>
+            <td>46</td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
