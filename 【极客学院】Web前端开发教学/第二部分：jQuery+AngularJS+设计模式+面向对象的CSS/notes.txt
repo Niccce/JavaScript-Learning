@@ -25,7 +25,6 @@ $().remove();			//删除整个元素
 $().empty();			//清空元素内的所有子元素
 
 $.noConflict();			//防止jQuery的$与其他框架的$冲突，使用这个语句之后，$就不再是jQuery的缩写了，$都要换回jQuery
-<<<<<<< HEAD
 var myjq = $.noConflict();//这样的话$可以用myjq代替，作为jQuery的缩写
 
 /*遍历*/
@@ -50,6 +49,3 @@ $().eq();				//返回指定元素的索引id，eq后要填一个数字，如$("d
 $().filter();			//filter后要填一个标准，找到满足这个标准的所有元素
 $().not();				//与filter作用相反
 /*--遍历--*/
-=======
-var myjq = $.noConflict();//这样的话$可以用myjq代替，作为jQuery的缩写
->>>>>>> 6d6683e41255d8f01491a3fd250d4a46e2165d75
