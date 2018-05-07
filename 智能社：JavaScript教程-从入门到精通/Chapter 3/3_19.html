@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+    var oTab=document.getElementById('tab1');
+    var oTxt=document.getElementById('name');
+    var oBtn=document.getElementById('btn1');
+
+    oBtn.onclick=function ()
+    {
+        for (var i=0;i<oTab.tBodies[0].rows.length;i++)
+        {
+            // if(oTab.tBodies[0].rows[i].cells[1].innerHTML==oTxt.value)   //这是直接比较字符串
+
+            // var sTab=oTab.tBodies[0].rows[i].cells[1].innerHTML;
+            // var sTxt=oTxt.value;
+            // if(sTab.toLowerCase()==sTxt.toLowerCase())   //大小写转换
+
+            var sTab=oTab.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase();
+            var sTxt=oTxt.value.toLowerCase();
+            if(sTab.search(sTxt)!=-1)//找到的话会返回那个字所在位置的数字，没找到会返回-1
+            {
+                oTab.tBodies[0].rows[i].style.background='yellow';
+            }
+            else
+            {
+                oTab.tBodies[0].rows[i].style.background='';
+            }
+        }
+    }
+
+
+};
+</script>
+</head>
+
+<body>
+姓名：<input id="name" type="text">
+<input type="button" id="btn1" value="搜索">
+<table id="tab1" border="1" width="500">
+	<thead>
+    	<td>ID</td>
+        <td>姓名</td>
+        <td>年龄</td>
+        <td>操作</td>
+    </thead>
+    <tbody>
+    	<tr>
+        	<td>1</td>
+            <td>Blue</td>
+            <td>27</td>
+            <td></td>
+        </tr>
+        <tr>
+        	<td>2</td>
+            <td>yellow</td>
+            <td>56</td>
+            <td></td>
+        </tr>
+        <tr>
+        	<td>3</td>
+            <td>pink</td>
+            <td>14</td>
+            <td></td>
+        </tr>
+        <tr>
+        	<td>4</td>
+            <td>black</td>
+            <td>9</td>
+            <td></td>
+        </tr>
+        <tr>
+        	<td>5</td>
+            <td>green</td>
+            <td>46</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
