@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--自动识别设备宽度，自动缩放-->
+    <title>Title</title>
+    <link type="text/css" href="../css/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <!--这个版本的jqMobile跟jq1.9.1可以匹配，不然效果出不来-->
+    <script src="../js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+    <div data-role="page">
+        <div data-role="header">
+            <h1>hello</h1>
+        </div>
+        <div data-role="content">
+            <label>
+                <input type="checkbox">苹果
+            </label>
+
+            <fieldset>
+                <label>
+                    <input type="checkbox" name="cb0">苹果
+                </label>
+                <label>
+                    <input type="checkbox" name="cb0">苹果
+                </label>
+                <label>
+                    <input type="checkbox" name="cb0">苹果
+                </label>
+            </fieldset>
+
+            <fieldset data-role="controlgroup">
+                <label>
+                    <input type="checkbox" name="cb0">连起来的
+                </label>
+                <label>
+                    <input type="checkbox" name="cb0">苹果
+                </label>
+                <label>
+                    <input type="checkbox" name="cb0">苹果
+                </label>
+            </fieldset>
+
+            <fieldset data-role="controlgroup" data-type="horizontal">
+                <label>
+                    <input type="checkbox" name="cb0">横向的
+                </label>
+                <label>
+                    <input type="checkbox" name="cb0" data-theme="b">改变主题的
+                </label>
+                <label>
+                    <input type="checkbox" name="cb0">复选按钮
+                </label>
+            </fieldset>
+
+            <label>
+                <input type="radio" name="r1">林峯
+            </label>
+            <label>
+                <input type="radio" name="r1">陈立农
+            </label>
+
+            <fieldset data-role="controlgroup" data-type="horizontal">
+                <label>
+                    <input type="radio" name="r1">林峯
+                </label>
+                <label>
+                <input type="radio" name="r1">弄弄
+                </label>
+            </fieldset>
+
+        </div>
+        <div data-role="footer">
+            <h1>welcome</h1>
+        </div>
+    </div>
+
+</body>
+</html>

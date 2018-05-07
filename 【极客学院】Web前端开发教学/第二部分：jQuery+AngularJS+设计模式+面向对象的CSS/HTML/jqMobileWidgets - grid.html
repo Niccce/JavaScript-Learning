@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--自动识别设备宽度，自动缩放-->
+    <title>Title</title>
+    <link type="text/css" href="../css/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <!--这个版本的jqMobile跟jq1.9.1可以匹配，不然效果出不来-->
+    <script src="../js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+    <div class="ui-grid-d">
+        <!--ui-grid-a中的a代表两列,b代表三列-->
+        <div class="ui-block-a">
+            <!--这里上面的a代表第一列-->
+            <div class="ui-bar ui-bar-a">hello a</div>
+        </div>
+        <div class="ui-block-b">
+            <div class="ui-bar ui-bar-a">hello b</div>
+        </div>
+        <div class="ui-block-c">
+            <div class="ui-bar ui-bar-a">hello c</div>
+        </div>
+        <div class="ui-block-d">
+            <div class="ui-bar ui-bar-a">hello d</div>
+        </div>
+        <div class="ui-block-e">
+            <div class="ui-bar ui-bar-a">hello e</div>
+        </div>
+
+        <div class="ui-block-a">
+            <div class="ui-bar ui-bar-a">hello a</div>
+        </div>
+        <div class="ui-block-b">
+            <div class="ui-bar ui-bar-a">hello b</div>
+        </div>
+        <div class="ui-block-c">
+            <div class="ui-bar ui-bar-a">hello c</div>
+        </div>
+        <div class="ui-block-d">
+            <div class="ui-bar ui-bar-a">hello d</div>
+        </div>
+        <div class="ui-block-e">
+            <div class="ui-bar ui-bar-a">hello e</div>
+        </div>
+    </div>
+
+    <div class="ui-grid-b">
+        <div class="ui-block-a">
+            <input type="button" data-theme="a" value="定义了三列">
+            <input type="button" data-theme="a" value="所以最右有空白">
+            <input type="button" data-theme="a" value="按钮">
+        </div>
+
+        <div class="ui-block-b">
+            <input type="button" data-theme="a" value="按钮">
+            <input type="button" data-theme="b" value="按钮">
+            <input type="button" data-theme="a" value="按钮">
+        </div>
+    </div>
+
+    <div class="ui-grid-solo">
+        <div class="ui-block-a">
+            <input type="button" data-theme="a" value="只有一列的按钮">
+        </div>
+    </div>
+
+</body>
+</html>

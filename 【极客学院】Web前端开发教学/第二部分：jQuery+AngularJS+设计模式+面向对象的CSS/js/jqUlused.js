@@ -1,3 +1,4 @@
+var valueSpan,slider;
 $(document).ready(function () {
     $("#aBtn").button();
 
@@ -39,5 +40,38 @@ $(document).ready(function () {
     $("#btn2").button();
     $("#btn2").on("click",function () {
         $("#divDiolog").dialog();
+    });
+
+    //menu
+    $("#menu").menu({position:{at:"left bottom"}});
+    //menu后的括号可以不带参数，那样出现位置就默认右上
+    //此处让子菜单出现在左下
+
+    //slider
+    // $("#slider").slider();//简单添加slider
+    valueSpan=$("#span");
+    slider=$("#slider");
+    // slider.slider({
+    //     change:function (event,ui) {
+    //         valueSpan.text(slider.slider("option","value"));
+    //     }
+    // });//放开鼠标后才显示当前slider的值
+
+    slider.slider({
+        slide:function (event,ui) {
+            valueSpan.text(slider.slider("option","value"));
+        }
+    });//实时显示slider数值
+
+    //spinner
+    $("#spinner").spinner();
+    $("#spinner").spinner("value","10");
+    $("#btn3").on("click",function(){
+        alert($("#spinner").spinner("value"));
+    })
+
+    //tabs
+    $(function () {
+        $("#tabs").tabs();
     });
 });

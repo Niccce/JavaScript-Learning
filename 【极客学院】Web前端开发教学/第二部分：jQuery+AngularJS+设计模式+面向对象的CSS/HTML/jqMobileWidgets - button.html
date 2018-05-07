@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--自动识别设备宽度，自动缩放-->
+    <title>Title</title>
+    <link type="text/css" href="../css/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <!--这个版本的jqMobile跟jq1.9.1可以匹配，不然效果出不来-->
+    <script src="../js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+    <div data-role="page">
+        <div data-role="header">
+            <h1>头</h1>
+        </div>
+        <div data-role="content">
+            <button>按钮</button>
+            <input type="button" value="按钮">
+            <!--上面两种按钮用来做表单提交会比较方便-->
+            <a href="#" class="ui-btn ui-shadow">按钮</a>
+            <!--一般使用这种按钮，进行跳转比较方便-->
+
+            <a href="#" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all"></a>
+            <!--给按钮加上图片的效果-->
+
+            <a href="#" class="ui-btn ui-btn-inline">按钮</a>
+            <a href="#" class="ui-btn ui-btn-inline">按钮</a>
+            <a href="#" class="ui-btn ui-btn-inline">按钮</a>
+
+            <div data-role="controlgroup">
+                <a href="#" class="ui-btn ui-shadow ui-btn-inline">按钮</a>
+                <a href="#" class="ui-btn ui-shadow ui-btn-inline">按钮</a>
+                <a href="#" class="ui-btn ui-shadow ui-btn-inline">按钮</a>
+            </div>
+
+            <div data-role="controlgroup" data-type="horizontal">
+                <a href="#" class="ui-btn ui-shadow ui-btn-inline">按钮</a>
+                <a href="#" class="ui-btn ui-shadow ui-btn-inline">按钮</a>
+                <a href="#" class="ui-btn ui-shadow ui-btn-inline">按钮</a>
+            </div>
+
+
+            <div data-role="controlgroup">
+                <a href="#" class="ui-btn ui-shadow">连起来的按钮</a>
+                <a href="#" class="ui-btn ui-shadow">连起来的按钮</a>
+                <a href="#" class="ui-btn ui-shadow">连起来的按钮</a>
+            </div>
+
+            <a href="#" class="ui-btn ui-btn-a">hello</a>
+            <a href="#" class="ui-btn ui-btn-b">hello</a>
+        </div>
+        <div data-role="footer">
+            <h1>底</h1>
+        </div>
+    </div>
+
+</body>
+</html>

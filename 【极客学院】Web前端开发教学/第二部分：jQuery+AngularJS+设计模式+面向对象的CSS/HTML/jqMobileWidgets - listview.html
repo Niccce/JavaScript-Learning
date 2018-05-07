@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--自动识别设备宽度，自动缩放-->
+    <title>Title</title>
+    <link type="text/css" href="../css/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <!--这个版本的jqMobile跟jq1.9.1可以匹配，不然效果出不来-->
+    <script src="../js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+    <ul data-role="listview">
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+        <li>D</li>
+    </ul>
+
+    <ol data-role="listview">
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+        <li>D</li>
+    </ol>
+
+    <ul data-role="listview">
+        <li><a href="#">A</a></li>
+        <li><a href="#">B</a></li>
+        <li><a href="#">C</a></li>
+        <li><a href="#">D</a></li>
+    </ul>
+    <br/>
+    <span>————————————————————————————————</span>
+    <ul data-role="listview" data-filter="true" data-inset="true">
+        <li><a href="#">A</a></li>
+        <li><a href="#">B</a></li>
+        <li><a href="#">C</a></li>
+        <li><a href="#">D</a></li>
+    </ul>
+    <br/>
+    <span>————————————————————————————————</span>
+    <form class="ui-filterable">
+        <input id="autoinput" data-type="search">
+    </form>
+    <ul data-role="listview" data-filter="true" data-filter-reveal="true" data-input="#autoinput" data-inset="true">
+        <!--data-filter-reveal="true"是默认不让ul显示出来；-->
+        <!--data-input="#autoinput"通过表单进行提交-->
+        <!--data-inset="true"指定是可插入状态-->
+        <li><a href="#">A</a></li>
+        <li><a href="#">B</a></li>
+        <li><a href="#">C</a></li>
+        <li><a href="#">c</a></li>
+        <li><a href="#">D</a></li>
+        <li><a href="#">a</a></li>
+    </ul>
+    <br/>
+    <span>————————————————————————————————</span>
+    <ul data-role="listview" data-autodividers="true" data-filter="true" data-input="true">
+        <li><a href="#">Arar给某字幕开头的项归纳在一起，加了索引值</a></li>
+        <li><a href="#">Apple有点像手机通讯录里面之类的</a></li>
+        <li><a href="#">Barsfvsd</a></li>
+        <li><a href="#">dad</a></li>
+        <li><a href="#">Cas</a></li>
+        <li><a href="#">Cjiodjso</a></li>
+        <li><a href="#">daddy</a></li>
+    </ul>
+
+</body>
+</html>

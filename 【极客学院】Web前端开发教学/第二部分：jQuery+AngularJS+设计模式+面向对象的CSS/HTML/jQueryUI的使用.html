@@ -11,6 +11,24 @@
         .ui-selected{
             background-color: #007fff;
         }
+        #menu{
+            width: 250px;
+        }
+        .ui-menu:after{
+            content: '.';
+            display: block;
+            clear: both;
+            visibility: hidden;
+            line-height: 0;
+            height: 0;
+        }
+        .ui-menu .ui-menu-item{
+            display: inline-block;
+            float: left;
+            margin: 0;
+            padding: 10px;
+            width: auto;
+        }
     </style>
 </head>
 
@@ -73,6 +91,59 @@
         <p>这是一个dialog</p>
     </div>
     <a href="#" id="btn2">dialog</a>
-
+    <br/>
+    <span>———————————————————————————————————————————</span>
+    <br/>
+<ul id="menu">
+    <li>
+        <a href="#">林峯</a>
+        <ul>
+            <li><a href="#">PTU机动部队</a></li>
+            <li><a href="#">大泼猴</a></li>
+            <li><a href="#">也平凡</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">陈立农</a>
+        <ul>
+            <li><a href="#">偶像练习生</a></li>
+            <li><a href="#">nine percent</a></li>
+            <li><a href="#">农农</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">林峯</a>
+        <ul>
+            <li><a href="#">帅哥</a></li>
+            <li><a href="#">逗比</a></li>
+        </ul>
+    </li>
+</ul>
+    <span>———————————————————————————————————————————</span>
+    <br/>
+    <span id="span">0</span>
+    <div id="slider"></div>
+    <span>———————————————————————————————————————————</span>
+    <br/>
+    <input id="spinner">
+    <button id="btn3">getValue</button>
+    <span>———————————————————————————————————————————</span>
+    <br/>
+    <div id="tabs">
+        <ul>
+            <li><a href="#hello1">hello111</a></li>
+            <li><a href="#hello2">hello222</a></li>
+            <li><a href="#hello3">hello333</a></li>
+        </ul>
+        <div id="hello1">
+            hello
+        </div>
+        <div id="hello2">
+            nihao
+        </div>
+        <div id="hello3">
+            zaijian
+        </div>
+    </div>
 </body>
 </html>

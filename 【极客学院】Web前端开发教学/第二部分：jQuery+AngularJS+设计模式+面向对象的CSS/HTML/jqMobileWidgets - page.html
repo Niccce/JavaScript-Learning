@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--自动识别设备宽度，自动缩放-->
+    <title>Title</title>
+    <link type="text/css" href="../css/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <!--这个版本的jqMobile跟jq1.9.1可以匹配，不然效果出不来-->
+    <script src="../js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+    <div data-role="page" id="pageOne">
+        <div data-role="header" data-position="fixed">
+            <!--加个 data-position="fixed"可以让头部一直显示，点击一下屏幕就隐藏，再点又出现-->
+            <h1>欢迎来到主页</h1>
+        </div>
+        <div role="main">
+            <a href="#pageTwo" data-transition="flip">跳转到第二个页面</a>
+            <!--<a href="#pageTwo" data-rel="dialog">打开一个dialog</a>-->
+            <p>林峯</p>
+            <p>林峯</p>
+            <p>林峯</p>
+            <p>林峯</p>
+            <p>林峯</p>
+            <p>林峯</p>
+            <p>林峯</p>
+            <p>林峯</p>
+            <p>林峯</p>
+            <p>林峯</p>
+            <p>林峯</p>
+            <p>林峯</p>
+            <p>林峯</p>
+            <p>林峯</p>
+            <p>林峯</p>
+            <p>林峯</p>
+            <p>林峯</p>
+            <p>林峯</p>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <h1>这是底部</h1>
+        </div>
+    </div>
+
+    <div data-role="page" id="pageTwo">
+        <div data-role="header">
+            <h1>欢迎来到主页</h1>
+        </div>
+        <div role="main">
+            <a href="#pageOne" data-transition="slide">返回第一个页面</a>
+        </div>
+        <div data-role="footer">
+            <h1>这是底部</h1>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--自动识别设备宽度，自动缩放-->
+    <title>Title</title>
+    <link type="text/css" href="../css/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <!--这个版本的jqMobile跟jq1.9.1可以匹配，不然效果出不来-->
+    <script src="../js/jquery.mobile-1.4.5.min.js"></script>
+    <style>
+        .ui-icon-myicon:after{
+            background-image: url("../image/triangle.png");
+            background-size: 15px 15px;
+        }
+    </style>
+</head>
+<body>
+    <div data-role="navbar">
+        <ul>
+            <li><a href="#">one</a></li>
+            <li><a href="#" class="ui-btn-active">two</a></li>
+            <li><a href="#">three</a></li>
+            <li><a href="#">four</a></li>
+        </ul>
+    </div>
+
+    <div data-role="header">
+        <h1>my head</h1>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" class="ui-btn-active">one</a></li>
+                <li><a href="#">two</a></li>
+                <li><a href="#">three</a></li>
+                <li><a href="#">four</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div data-role="footer">
+        <h1>my foot</h1>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" class="ui-btn-active">one</a></li>
+                <li><a href="#">two</a></li>
+                <li><a href="#">three</a></li>
+                <li><a href="#">four</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div data-role="header" data-theme="b">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" data-icon="grid">one</a></li>
+                <li><a href="#" data-icon="star" class="ui-btn-active">one</a></li>
+                <li><a href="#" data-icon="gear">one</a></li>
+                <li><a href="#" class="ui-btn ui-shadow  ui-btn-icon-top ui-icon-myicon">自定义icon</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
