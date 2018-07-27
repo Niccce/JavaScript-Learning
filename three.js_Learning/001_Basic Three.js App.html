@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Three.js App</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        canvas{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<script src="js/three.js"></script>
+<script>
+    // Javascript will go here.
+
+    //一个三维场景需要包含:场景、摄像机、渲染器
+
+    // 创建三维场景
+    var scene = new THREE.Scene();
+
+    // 创建透视摄像机,参数分别代表：视场角（视野的范围 于焦距成关系） 摄像机的长宽比 近景裁剪 远景裁剪
+    // 参数为：可视角度、实际窗口的宽高比，近处的裁面距离，远处的裁面距离
+    // 只有离相机的距离大于near值，小于far值，且在相机的可视角度之内，才能被相机投影到。
+    // cam = new THREE.PerspectiveCamera( fov, aspect, near, far )
+    var aspect = window.innerWidth / window.innerHeight;//实际窗口的宽高比
+    var camera = new THREE.PerspectiveCamera( 75, aspect, 0.1, 1000 );
+
+    //使用Webgl渲染（如果当前环境不支持webgl，threejs会自动跳转其他的渲染方式）
+    var renderer = new THREE.WebGLRenderer();
+
+    //设置渲染的范围大小
+    //隐藏的第三个参数可以为false，写法如：
+    // renderer.setSize(window.innerWidth/2, window.innerHeight/2, false)
+    //false情况渲染分辨率减半
+    renderer.setSize( window.innerWidth, window.innerHeight );
+
+    // 将渲染的内容添加到HTML中
+    document.body.appendChild( renderer.domElement );
+
+    // 创建一个方块,参数分别是:长宽高
+    // var geo = new THREE.BoxGeometry( width, height, depth );
+    var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+
+    // 创建一个材质,网格法向量材质
+    var material = new THREE.MeshNormalMaterial();
+
+    // 创建方块（将上面的变量作为参数传递进去）
+    var cube = new THREE.Mesh( geometry, material );
+
+    // 给场景添加方块
+    scene.add( cube );
+
+    //设置摄像机的位置（摄像机在0，0，0位置，看不见方块）
+    // 默认情况下，当我们调用scene.add（）时，东西将被添加到坐标（0,0,0）中。
+    // 这会导致相机和立方体彼此在一起。为了避免这种情况，我们只需将相机移出一点。
+    camera.position.z = 5;
+    // camera.position.y = 2;
+    // camera.position.x = 3;
+    // camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+    var render = function () {
+        // 这将在每一帧（通常每秒60次）运行
+        requestAnimationFrame( render );
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+        // cube.rotation.z += 0.1;
+        renderer.render( scene, camera );
+    };
+
+    render();
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: yellow;
+            position: absolute;
+        }
+        .box{
+            border: 1px dashed black;
+            position: absolute;
+        }
+    </style>
+    <script>
+        window.onload=function()
+        {
+            var oDiv=document.getElementById('div1');
+            var disX=0;
+            var disY=0;
+
+            oDiv.onmousedown=function(ev)
+            {
+                var oEvent=ev||event;
+                //鼠标在视口区域坐标-div左上角坐标，即鼠标在div内与div左上角边界的距离
+                disX=oEvent.clientX-oDiv.offsetLeft;
+                disY=oEvent.clientY-oDiv.offsetTop;
+
+                var oBox=document.createElement('div');//鼠标按下时新建一个div
+                oBox.className='box';//给div加虚线框
+                oBox.style.width=oDiv.offsetWidth+'px';
+                oBox.style.height=oDiv.offsetHeight+'px';//设置box的虚线框大小
+
+                oBox.style.left=oDiv.offsetLeft+'px';
+                oBox.style.top=oDiv.offsetTop+'px';
+
+                document.body.appendChild(oBox);//将建好的box放进去，否则看不到
+
+                document.onmousemove=function(ev)
+                {
+                    var oEvent=ev||event;
+                    oBox.style.left=oEvent.clientX-disX+'px';
+                    oBox.style.top=oEvent.clientY-disY+'px';//移动虚线框
+                };
+
+                document.onmouseup=function()
+                {
+                    document.onmousemove=null;
+                    document.onmouseup=null;
+
+                    oDiv.style.left=oBox.offsetLeft+'px';
+                    oDiv.style.top=oBox.offsetTop+'px';
+
+
+                    document.body.removeChild(oBox);
+                };
+                return false;//阻止火狐的一个二次拖拽的bug
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

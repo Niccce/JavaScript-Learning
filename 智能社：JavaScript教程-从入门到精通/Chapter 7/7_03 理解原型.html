@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var arr1=new Array(12,55,34,78,676);
+        var arr2=new Array(34,78);
+
+        //这样给Array加方法时不会报错
+        //相当于给元素加了个class
+        Array.prototype.sum=function ()
+
+        //这样给arr1加方法时，【alert(arr2.sum());】会报错，因为这个方法只有arr1有
+        // 可理解为加行间样式一样
+        // arr1.sum=function ()
+        {
+            var result=0;
+            for(var i=0;i<this.length;i++)
+            {
+                result+=this[i];
+            }
+            return result;
+        };
+
+        alert(arr1.sum());
+        alert(arr2.sum());
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #parent{
+            width: 20px;
+            height: 600px;
+            background: #CCCCCC;
+            position: relative;
+            margin:100px 800px;
+        }
+        #div1{
+            width: 20px;
+            height: 20px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+    <script>
+        window.onload=function()
+        {
+            var oDiv=document.getElementById('div1');
+            var oParent=document.getElementById('parent');
+            var disY=0;
+
+            oDiv.onmousedown=function(ev)
+            {
+                var oEvent=ev||event;
+                //鼠标在视口区域坐标-div左上角坐标，即鼠标在div内与div左上角边界的距离
+                disY=oEvent.clientY-oDiv.offsetTop;
+
+                document.onmousemove=function(ev)
+                {
+                    var oEvent=ev||event;
+                    var l=oEvent.clientY-disY;
+
+                    if(l<0)
+                    {
+                        l=0;
+                    }
+                    else if(l>oParent.offsetHeight-oDiv.offsetHeight)
+                    {
+                        l=oParent.offsetHeight-oDiv.offsetHeight;
+                    }
+                    oDiv.style.top=l+'px';
+                };
+
+                document.onmouseup=function()
+                {
+                    document.onmousemove=null;
+                    document.onmouseup=null;
+                };
+                return false;//阻止火狐的一个二次拖拽的bug
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="parent">
+    <div id="div1"></div>
+</div>
+</body>
+</html>

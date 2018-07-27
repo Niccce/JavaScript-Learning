@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 div{
+            height: 200px;
+            width: 200px;
+            background: gainsboro;
+            border: 1px solid black;
+            display: none;
+        }
+        .active{
+            background: yellow;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            new TabSwitch('div1');
+        };
+
+        function TabSwitch (id) {
+            var _this=this;
+            var oDiv=document.getElementById(id);
+            this.aBtn=oDiv.getElementsByTagName('input');
+            this.aDiv=oDiv.getElementsByTagName('div');
+
+            for(var i=0;i<this.aBtn.length;i++)
+            {
+                this.aBtn[i].index=i;
+                this.aBtn[i].onclick=function () {
+                    _this.fnclick(this);
+                }
+            }
+        }
+
+        TabSwitch.prototype.fnclick=function (oBtn) {//fnclick不是函数了，是一个对象的方法了
+            for(var j=0;j<this.aBtn.length;j++)
+            {
+                this.aBtn[j].className='';
+                this.aDiv[j].style.display='none';
+            }
+            oBtn.className='active';
+            this.aDiv[oBtn.index].style.display='block';
+        }
+    </script>
+</head>
+<body>
+<div id="div1">
+    <input class="active" type="button" value="aaa">
+    <input type="button" value="bbb">
+    <input type="button" value="ccc">
+    <div style="display: block;">12346546</div>
+    <div>dsfsfg</div>
+    <div>dsfs21313134</div>
+</div>
+</body>
+</html>

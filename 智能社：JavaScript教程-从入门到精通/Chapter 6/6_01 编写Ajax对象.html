@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script>
+        window.onload=function () {
+            var oBtn=document.getElementById('btn1');
+
+            oBtn.onclick=function () {
+
+                //1.创建Ajax对象*************************
+
+                // var oAjax=new XMLHttpRequest();//IE6不兼容
+                // alert(oAjax);//表明Ajax对象创建成功
+
+                //IE6
+                // var oAjax=new ActiveXObject("Microsoft.XMLHTTP");
+                // alert(oAjax);
+
+                if(window.XMLHttpRequest)//IE6下XMLHttpRequest不存在会报错，而用没有定义的属性会显示undefined，因此加上window.
+                {
+                    var oAjax=new XMLHttpRequest();
+                }
+                else
+                {
+                    var oAjax=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                // alert(oAjax);
+
+
+                // 2.连接服务器*************************
+                // open(方法,文件名,异步传输)
+                // oAjax.open('GET','aaa.txt',true);//这句也可以，但下面的可以清楚缓存，更好,在ie下感觉很明显
+                oAjax.open('GET','aaa.txt?t='+new Date().getTime(),true);
+
+
+                // 3.发送请求*************************
+                oAjax.send();
+
+
+                // 4.接收返回*************************
+                // 当Ajax与服务器之间有通信时，onreadystatechange事件会发生
+                oAjax.onreadystatechange=function () {
+                    // oAjax.readyState();//浏览器和服务器，进行到哪一步了
+                    if(oAjax.readyState==4)//读取完成，但不代表成功（文件不存在...）
+                    {
+                        if(oAjax.status==200)//成功
+                        {
+                            alert('成功:'+oAjax.responseText)
+                        }
+                        else
+                        {
+                            alert('失败：'+oAjax.status);//aaa.txt不存在时，显示【失败：404】
+                        }
+
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="btn" id="btn1">
+</body>
+</html>

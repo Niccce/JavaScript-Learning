@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    function CreatPerson(name,QQ) {//构造函数
+        //原料
+        var obj=new Object();
+
+        //加工
+        obj.name=name;
+        obj.qq=QQ;
+
+        obj.showName=function () {
+            alert("My name is "+this.name);
+        };
+        obj.showQQ=function () {
+            alert("My QQ number is "+this.qq);
+        };
+
+        //出厂
+        return obj;
+    }
+
+    var obj=new CreatPerson("Hiuman","123456789");
+    var obj2=new CreatPerson("TAM","987654321");
+    obj.showName();
+    obj.showQQ();
+    obj2.showName();
+    obj2.showQQ();
+    alert(obj.showName==obj2.showName);//出来结果为false，说明不是同一个函数
+</script>
+<body>
+
+</body>
+</html>
