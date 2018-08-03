@@ -1,0 +1,6 @@
+8_01 点击按钮运行代码
+8_02 userAgent、location
+8_03 confirm、prompt
+8_04 设置cookie
+8_05 设置、读取、删除cookie封装成函数
+8_06 用cookie记录上次登录的用户名

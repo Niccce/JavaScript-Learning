@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //设置cookie
+        function setCookie(name,value,iDay) {
+            var oDate=new Date();
+            oDate.setDate(oDate.getDate()+iDay);
+
+            document.cookie=name+'='+value+';expires='+oDate;
+        }
+
+        //获取cookie
+        function getCookie(name) {
+
+            // 将多cookie切割为多个名/值对，即，把每条cookie切开
+            var arr=document.cookie.split('; ');//alert cookie时不难发现，cookie是以分号空格隔开每条的；
+
+            //遍历cookie数组，处理每个cookie对
+            for(var i=0;i<arr.length;i++)
+            {
+                var arr2=arr[i].split('=');
+                if(arr2[0]==name)
+                {
+                    return arr2[1];
+                }
+            }
+            return '';//没找到，返回空字符串
+        }
+
+        //删除cookie
+        function removeCookie(name) {
+            //日期设置-1，系统看到后就会把cookie删掉
+            setCookie(name,1,-1);
+        }
+
+        removeCookie('passWord');
+        // setCookie('userName','Hiuman',1);
+        // setCookie('passWord','13546',1);
+
+        alert(document.cookie);
+        // alert(getCookie('passWord'));//12546
+        // alert(getCookie('user'));
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

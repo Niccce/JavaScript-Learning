@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        // （没有localhost时）chrome/IE一般都会把cookie干掉，因此用FF测试
+
+        var oDate=new Date();
+        oDate.setDate(oDate.getDate()+14);//当前日期+14天（系统自动计算）得出来的日期赋给oDate
+
+        //取消注释运行一次，再注释掉运行一次，user还在（要用localhost运行），说明cookie有效期限保存成功
+        // document.cookie='user=Hiuman;expires='+oDate;
+        // document.cookie='pass=123456';//在cookie用等于，不会被覆盖，而是会添加
+
+        alert(document.cookie);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        /*************数组的引用与赋值**************/
+        // var arr1=[1,2,3];
+        // var arr2=arr1;//实际上这是引用而不是赋值，arr2指向了arr1的内存空间
+        // arr2.push(4);
+        // alert(arr1);//1,2,3,4
+        // alert(arr2);//1,2,3,4
+
+        //////////////////////////////////
+        // var arr1=[1,2,3];
+        // var arr2=[];
+        //
+        // for(var i=0;i<arr1.length;i++)//这样才是赋值
+        // {
+        //     arr2.push(arr1[i]);
+        // }
+        // arr2.push(4);
+        // alert(arr1);//1,2,3
+        // alert(arr2);//1,2,3,4
+
+
+        /***************call的一个用法****************/
+        // function show() {
+        //     alert(this);
+        // }
+        //
+        // show();//对象window
+        // show.call(12);//12   call可以改变函数执行时，里面的this
+
+        ///////////////////////////////////////////////
+        // function show(a,b) {
+        //     alert('this是：'+this+'\na是：'+a+'\nb是：'+b);
+        // }
+        //
+        // show(12,5);
+        // show.call('abc',12,5);//abc 12 5
+
+        /*****************************************/
+        function A() {
+            this.abc=12;//因为下面用call修改了此处的this，因此B拥有了abc的属性
+        }
+        
+        A.prototype.show=function () {
+            alert(this.abc);
+        };
+        
+        //继承A
+        function B() {
+
+            A.call(this);//this->new B();
+        }
+
+        /////////////////////////////////////////////////
+        // B.prototype=A.prototype;//此处是引用而不是赋值
+        // B.prototype.fn=function () {
+        //     alert('abc');
+        // };
+        // var objB=new B();
+        // var objA=new A();
+        //
+        // alert(objB.abc);//12[说明B继承了A的属性]
+        // // objB.fn();
+        // objA.fn();//abc[说明上面是引用而不是赋值]
+        /////////////////////////////////////////////////
+        for(var i in A.prototype)
+        {
+            B.prototype[i]=A.prototype[i];
+        }
+
+        B.prototype.fn=function () {
+            alert('abc');
+        };
+
+        var objB=new B();
+        var objA=new A();
+
+        objA.fn();//浏览器报错[说明B成功继承了，fn是属于B的]
+    </script>
+</head>
+<body>
+
+</body>
+</html>
