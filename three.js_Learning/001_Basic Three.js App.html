@@ -5,6 +5,7 @@
     <style>
         body{
             margin: 0;
+            overflow: hidden;/*overflow:hidden取消滑动栏*/
         }
         canvas{
             width: 100%;
@@ -48,27 +49,35 @@
 
     // 创建一个材质,网格法向量材质
     var material = new THREE.MeshNormalMaterial();
+    //创建一个材质 并且给予绿色
+    // var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );//创建模型材质数据
 
     // 创建方块（将上面的变量作为参数传递进去）
-    var cube = new THREE.Mesh( geometry, material );
+    var cube = new THREE.Mesh( geometry, material );//将上面的数据绑定到一起
 
     // 给场景添加方块
     scene.add( cube );
 
-    //设置摄像机的位置（摄像机在0，0，0位置，看不见方块）
+    // 设置摄像机的位置（摄像机在0，0，0位置，看不见方块）
     // 默认情况下，当我们调用scene.add（）时，东西将被添加到坐标（0,0,0）中。
     // 这会导致相机和立方体彼此在一起。为了避免这种情况，我们只需将相机移出一点。
     camera.position.z = 5;
+
+    //调整到其他位置的方法
     // camera.position.y = 2;
     // camera.position.x = 3;
-    // camera.lookAt(new THREE.Vector3(0, 0, 0));
+    // camera.lookAt(new THREE.Vector3(0, 0, 0));//让摄像机望向原点
 
     var render = function () {
         // 这将在每一帧（通常每秒60次）运行
         requestAnimationFrame( render );
+
+        //实现方块自转
         cube.rotation.x += 0.01;
         cube.rotation.y += 0.01;
         // cube.rotation.z += 0.1;
+
+        //通过camera的摄像机将场景渲染出来
         renderer.render( scene, camera );
     };
 
