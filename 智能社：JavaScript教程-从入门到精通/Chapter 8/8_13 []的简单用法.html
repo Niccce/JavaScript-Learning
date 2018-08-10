@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //*********************任意字符*********************//
+        // var str='obt opt oep ost out acf oet';
+        // var re=/o[usb]t/g;//usb中任选一个
+        // // 把out、ost、obt(若有)都选出来
+        // alert(str.match(re));//obt,ost,out
+
+        //*********************范围*********************//
+        // var str='12 ddfds 87 dsdf35fs 233 -=-dg807';
+        // alert(str.match(/\d+/g));//12,87,35,233,807
+        // alert(str.match(/[0-9]+/g));//12,87,35,233,807
+        //  \d的作用与[0-9]一样
+
+        //*********************排除*********************//
+        var str='12 ddfds 87 dsdf35fs 233 -=-dg807';
+        alert(str.match(/[^0-9]+/g));//【 ddfds , dsdf,fs , -=-dg】
+
+        // [^a-z0-9]//选出除了字母与数字的所有字符、中文什么的
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

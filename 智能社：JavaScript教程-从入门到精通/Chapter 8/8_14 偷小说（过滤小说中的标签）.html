@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            var oBtn=document.getElementById('btn1');
+            var oTxt1=document.getElementById('txt1');
+            var oTxt2=document.getElementById('txt2');
+
+            oBtn.onclick=function () {
+                // var re=/<.+>/g;//提取<>以及<>内所有任意字符（正则很贪婪，它直接把第一个“<”到最后一个“>”内的所有内容都当成任意字符了）
+                var re=/<[^<>]+>/g;//提取<>以及<>内不包含<>的所有内容，即每一个带<>的标签
+
+                oTxt2.value=oTxt1.value.replace(re,'');//把提取到的东西都替换掉
+            }
+        }
+    </script>
+</head>
+<body>
+<textarea id="txt1" rows="10" cols="40"><br />&#12288;&#12288;刀疤男缓了一会儿，才从地上爬了起来，乖乖地捡起地上散落的被褥，平平整整的铺在了空床上，然后轻声来到叶天赐跟前，低头弯腰，毕恭毕敬的说道：“Boss，你的床铺好了。”<br /><br />&#12288;&#12288;叶天赐的思绪早已经飘到了陷害他入狱的少彦名身上，并没有作声。<br /><br />&#12288;&#12288;刀疤男也不敢动，一直这么低头弯腰的站着，呼吸也轻微地不敢发出声音来，房间里瞬间静的连根针掉在地上，都能够听出来。<br /><br />&#12288;&#12288;…………………………<br /><br />&#12288;&#12288;PS:新书首发，求推荐，求收藏。本书作者兼十八线歌手，艺名：王一，已发行首张专辑《一心一意》，主打歌曲《佛系少年》《做个俗人》《人生就像一个球》《你我已是陌生人》《我不知道为什么会爱上你》等。<br /><br />&#12288;&#12288;QQ音乐、酷狗音乐、酷我音乐、网易云音乐、虾米音乐均可下载试听，记得评论分享转发一下，万分感谢。<br /><br />&#12288;&#12288;微博：业余歌手王一<br /><br /></textarea><br>
+<input id="btn1" value="提取文字" type="button"><br>
+<textarea id="txt2" rows="10" cols="40"></textarea>
+</body>
+</html>

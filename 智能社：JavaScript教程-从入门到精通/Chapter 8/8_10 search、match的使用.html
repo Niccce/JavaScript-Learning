@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+
+    // var str='adsf 45 4f165 fs33df s';
+    // var re=/\d/;//【\d】表示数字
+    // alert(str.search(re));//5（找到第一个数字的位置）
+
+
+    var str='adsf 45 4f165 fs33df s';
+    // var re=/\d/;//找到第一个数字【4】
+    // var re=/\d/g;//找到全部数字,并且一个一个返回出来【4,5,4,1,6,5,3,3】
+    // var re=/\d\d/g;//找到所有连续有2个数字的并返回出来【45,16,33】
+    // var re=/\d\d\d/g;//找到所有连续有3个数字的并返回出来【45,16,33】
+    var re=/\d+/g;//我要若干个数字【45,4,165,33】
+    alert(str.match(re));
+
+</script>
+<body>
+
+</body>
+</html>

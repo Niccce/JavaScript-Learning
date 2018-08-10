@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+        ////////////////用一般方法找出字符串中的数字//////////////
+
+        // var str='12 ddfds 87 dsdf35fs 233 -=-dg807';
+        // var arr=[];
+        // var tmp='';
+        //
+        // for(var i=0;i<str.length;i++)
+        // {
+        //     if(str.charAt(i)>='0'&& str.charAt(i)<='9')//如果是数字，就记录起来
+        //     {
+        //         tmp+=str.charAt(i);
+        //     }
+        //     else //记录到不是数字为止，再作为一个元素放进数组里
+        //     {
+        //         if(tmp)//如果tmp有值的话
+        //         {
+        //             arr.push(tmp);
+        //             tmp='';//清空，避免把数字重复放进数组
+        //         }
+        //     }
+        // }
+        // if(tmp)//遍历完整个字符串，最后可能还有数字，要再push一次
+        // {
+        //     arr.push(tmp);
+        //     tmp='';
+        // }
+        //
+        // alert(arr);
+
+        //////////////////////正则方法///////////////////////
+
+        var str='12 ddfds 87 dsdf35fs 233 -=-dg807';
+        alert(str.match(/\d+/g));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

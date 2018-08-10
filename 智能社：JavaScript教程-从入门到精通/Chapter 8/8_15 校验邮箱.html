@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            var oTxt=document.getElementById('txt1');
+            var oBtn=document.getElementById('btn');
+
+            oBtn.onclick=function () {
+                var re=/^\w+@[a-z0-9]+\.[a-z]+$/i;
+
+                //test用来检验某字符串是否符合正则规则，符合返回true
+                if (re.test(oTxt.value))
+                {
+                    alert("合法邮箱");
+                }
+                else {
+                    alert("邮箱不合法");
+                }
+            }
+        }
+
+        // 邮箱：
+        // 一串英文、数字、下划线     @       一串英文、数字     .       一串英文
+        // \w+                     @       [a-z0-9]+       \.      [a-z]+
+        // 就只是上面的话，如果字符串前方出现下方的情况，也会判定为合法邮箱
+        // ----是709498924@qq.com
+        // 因为，test的话，字符串一部分符合要求就会返回true
+
+        // ^
+        // 出现在方括号里，是排除的意思：[^abc]
+        // ^单独出现时，代表行首（字符串开头）
+        // $代表行尾（字符串结尾）
+
+    </script>
+</head>
+<body>
+<input type="text" id="txt1">
+<input type="button" id="btn" value="校验">
+
+</body>
+</html>
