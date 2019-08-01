@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - post processing - Outline Pass（研究此例子并对004增加显示物体边框功能）</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				background-color: #000000;
+				margin: 0px;
+				overflow: hidden;
+				font-family:Monospace;
+				font-size:13px;
+				text-align:center;
+				font-weight: bold;
+			}
+
+			a {
+				color:#00ff78;
+			}
+
+			#info {
+				color: #fff;
+				position: absolute;
+				top: 10px;
+				width: 100%;
+				text-align: center;
+				display:block;
+			}
+			.dg.ac {
+				z-index: 1 !important; /* FIX DAT.GUI */
+			}
+		</style>
+	</head>
+	<body>
+		<script src="js/three.js"></script>
+		<script src="js/controls/OrbitControls.js"></script>
+		<script src="js/loaders/OBJLoader.js"></script>
+
+		<script src="js/Detector.js"></script>
+
+		<script src="js/shaders/CopyShader.js"></script>
+		<script src="js/shaders/FXAAShader.js"></script>
+		<script src="js/postprocessing/EffectComposer.js"></script>
+		<script src="js/postprocessing/RenderPass.js"></script>
+		<script src="js/postprocessing/ShaderPass.js"></script>
+		<script src="js/postprocessing/OutlinePass.js"></script>
+		<script src="js/libs/stats.min.js"></script>
+		<script src='js/libs/dat.gui.min.js'></script>
+
+		<div id="info">
+			<a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> - Outline Pass by <a href="http://eduperiment.com" target="_blank" rel="noopener">Prashant Sharma</a> and <a href="https://clara.io" target="_blank" rel="noopener">Ben Houston</a><br/><br/>
+		</div>
+
+		<script>
+
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();//检测浏览器是否支持webgl
+
+			var container, stats;
+			var camera, scene, renderer, controls;
+			var raycaster = new THREE.Raycaster();
+
+			var mouse = new THREE.Vector2();//new一个二维向量
+			var selectedObjects = [];
+
+			var composer, effectFXAA, outlinePass;
+			var obj3d = new THREE.Object3D();
+
+			var group = new THREE.Group();
+
+            // 定义一个 JavaScript 对象，该对象将保存希望通过 dat.GUI 改变的属性（并初始化了属性的值）
+			var params = {
+				edgeStrength: 3.0,//边缘强度
+				edgeGlow: 0.0,//边缘发光强度
+				edgeThickness: 1.0,//边缘厚度
+				pulsePeriod: 0,//脉冲周期(边缘闪烁)
+				rotate: false,
+				usePatternTexture: false//是否使用贴图
+			};
+
+			// Init gui
+            // dat.GUI 是一个轻量级的图形用户界面库（GUI 组件），使用这个库可以很容易地创建出能够改变代码变量的界面组件
+
+			var gui = new dat.GUI( { width: 300 } );//新建组建，设定宽度
+
+            // 接下来需要将这个 JavaScript 对象传递给 dat.gui 对象，并设置各个属性的取值范围
+            // onchange 事件会在域的内容改变时发生
+			gui.add( params, 'edgeStrength', 0.01, 10 ).onChange( function ( value ) {
+
+				outlinePass.edgeStrength = Number( value );
+
+			} );
+
+			gui.add( params, 'edgeGlow', 0.0, 1 ).onChange( function ( value ) {
+
+				outlinePass.edgeGlow = Number( value );
+
+			} );
+
+			gui.add( params, 'edgeThickness', 1, 4 ).onChange( function ( value ) {
+
+				outlinePass.edgeThickness = Number( value );
+
+			} );
+
+			gui.add( params, 'pulsePeriod', 0.0, 5 ).onChange( function ( value ) {
+
+				outlinePass.pulsePeriod = Number( value );
+
+			} );
+
+			gui.add( params, 'rotate' );
+
+			gui.add( params, 'usePatternTexture' ).onChange( function ( value ) {
+
+				outlinePass.usePatternTexture = value;
+
+			} );
+
+			//设定轮廓颜色
+			var Configuration = function () {
+
+				this.visibleEdgeColor = '#ffffff';//可见部分轮廓
+				this.hiddenEdgeColor = '#190a05';//不可见部分轮廓
+
+			};
+
+			var conf = new Configuration();
+
+			var controllerVisible = gui.addColor( conf, 'visibleEdgeColor' ).onChange( function ( value ) {
+
+				outlinePass.visibleEdgeColor.set( value );
+
+			} );
+
+			var controllerHidden = gui.addColor( conf, 'hiddenEdgeColor' ).onChange( function ( value ) {
+
+				outlinePass.hiddenEdgeColor.set( value );
+
+			} );
+
+			init();
+			animate();
+
+			function init() {
+				// 建一个容器div
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+                // 窗口的文档显示区的宽度
+				var width = window.innerWidth;
+				var height = window.innerHeight;
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.shadowMap.enabled = true;//为渲染器开启 深度贴图阴影//打开渲染器的地图阴影(true之后物体会有影子)
+				// todo - support pixelRatio in this demo
+				renderer.setSize( width, height );//渲染器渲染范围为整个窗口
+				document.body.appendChild( renderer.domElement );//绑定渲染器
+
+				scene = new THREE.Scene();
+
+				camera = new THREE.PerspectiveCamera( 45, width / height, 0.1, 100 );//视场角，长宽比，近/远景裁剪
+				camera.position.set( 0, 0, 8 );
+
+                //启用orbit摄像机 需要OrbitControls.js文件支持 可以实现环绕360度摄像机 支持缩放功能
+				controls = new THREE.OrbitControls( camera, renderer.domElement );
+				controls.minDistance = 5;
+				controls.maxDistance = 20;
+				controls.enablePan = false;//是否开启右键拖拽
+
+                // 使动画循环使用时阻尼或自转 意思是否有惯性(an animation loop is required when either damping or auto-rotation are enabled)
+				controls.enableDamping = true;//改为false的话，用鼠标旋转物体，放开鼠标就停了，很生硬
+
+				controls.dampingFactor = 0.25;//动态阻尼系数 就是鼠标拖拽旋转灵敏度
+
+
+				scene.add( new THREE.AmbientLight( 0xaaaaaa, 0.2 ) );//场景添加环境光
+
+				var light = new THREE.DirectionalLight( 0xddffdd, 0.6 );//方向光源
+				light.position.set( 1, 1, 1 );
+
+				light.castShadow = true;//投射阴影
+
+                //当我们投射阴影的时候如果想调节阴影的清晰度：可以将 shadow.mapSize 设置为更大的值
+				light.shadow.mapSize.width = 1024;
+				light.shadow.mapSize.height = 1024;
+
+				//当我们投射阴影的时候如果想调节阴影的大小：可以设置 shadow.camera 的参数
+				var d = 10;
+
+				light.shadow.camera.left = - d;
+				light.shadow.camera.right = d;
+				light.shadow.camera.top = d;
+				light.shadow.camera.bottom = - d;
+
+				light.shadow.camera.far = 1000;
+
+				scene.add( light );
+
+				// model
+
+				var manager = new THREE.LoadingManager();
+
+				manager.onProgress = function ( item, loaded, total ) {
+
+					console.log( item, loaded, total );
+
+				};
+
+                //加载外部模型,需要OBJLoader.js的支持
+				var loader = new THREE.OBJLoader( manager );
+				loader.load( 'models/obj/tree.obj', function ( object ) {
+
+					var scale = 1.0;
+
+                    //traverse 对模型的各个部分进行逐一操作，可以用for loop递归来实现
+					object.traverse( function ( child ) {
+
+						if ( child instanceof THREE.Mesh ) {
+
+							child.geometry.center();
+							child.geometry.computeBoundingSphere();
+							scale = 0.2 * child.geometry.boundingSphere.radius;
+
+							var phongMaterial = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, shininess: 5 } );
+							child.material = phongMaterial;
+							child.receiveShadow = true;
+							child.castShadow = true;
+
+						}
+
+					} );
+
+					object.position.y = 1;
+					object.scale.divideScalar( scale );
+					obj3d.add( object );//树
+
+				} );
+
+				scene.add( group );
+
+				group.add( obj3d );
+
+				//
+
+				var geometry = new THREE.SphereBufferGeometry( 3, 48, 24 );
+
+				for ( var i = 0; i < 20; i ++ ) {
+
+					var material = new THREE.MeshLambertMaterial();
+					material.color.setHSL( Math.random(), 1.0, 0.3 );
+
+					var mesh = new THREE.Mesh( geometry, material );
+					mesh.position.x = Math.random() * 4 - 2;
+					mesh.position.y = Math.random() * 4 - 2;
+					mesh.position.z = Math.random() * 4 - 2;
+					mesh.receiveShadow = true;
+					mesh.castShadow = true;
+					mesh.scale.multiplyScalar( Math.random() * 0.3 + 0.1 );
+					group.add( mesh );
+
+				}
+
+				//地板
+				var floorMaterial = new THREE.MeshLambertMaterial( { side: THREE.DoubleSide } );
+
+				var floorGeometry = new THREE.PlaneBufferGeometry( 12, 12 );
+				var floorMesh = new THREE.Mesh( floorGeometry, floorMaterial );
+				floorMesh.rotation.x -= Math.PI * 0.5;
+				floorMesh.position.y -= 1.5;
+				group.add( floorMesh );
+				floorMesh.receiveShadow = true;
+
+				//圆环
+				var geometry = new THREE.TorusBufferGeometry( 1, 0.3, 16, 100 );
+				var material = new THREE.MeshPhongMaterial( { color: 0xffaaff } );
+				var torus = new THREE.Mesh( geometry, material );
+				torus.position.z = - 4;
+				group.add( torus );
+				torus.receiveShadow = true;
+				torus.castShadow = true;
+
+				//显示帧率
+
+				stats = new Stats();
+				container.appendChild( stats.dom );
+
+				// postprocessing
+
+                // 创建一个EffectComposer(效果组合器)对象
+				composer = new THREE.EffectComposer( renderer );
+
+                // 接下来我们要在这个组合器中添加各种通道。第一个要加入的通道是RenderPass。这个通道会渲染场景，但不会将渲染结果输出到屏幕上。
+				var renderPass = new THREE.RenderPass( scene, camera );//保存渲染结果，但不会输出到屏幕
+				composer.addPass( renderPass );
+
+				outlinePass = new THREE.OutlinePass( new THREE.Vector2( window.innerWidth, window.innerHeight ), scene, camera );
+				composer.addPass( outlinePass );
+
+				var onLoad = function ( texture ) {
+
+					outlinePass.patternTexture = texture;
+					texture.wrapS = THREE.RepeatWrapping;
+					texture.wrapT = THREE.RepeatWrapping;
+
+				};
+
+				// 加载贴图
+				var loader = new THREE.TextureLoader();
+
+				loader.load( 'textures/tri_pattern.jpg', onLoad );
+
+				effectFXAA = new THREE.ShaderPass( THREE.FXAAShader );//传入了THREE.FXAAShader着色器，用于拷贝渲染结果
+				effectFXAA.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
+				effectFXAA.renderToScreen = true;//将渲染结果返回到屏幕上
+				composer.addPass( effectFXAA );
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+				window.addEventListener( 'mousemove', onTouchMove );
+				window.addEventListener( 'touchmove', onTouchMove );//touchmove当手指在屏幕上滑动的时候连续地触发
+
+				function onTouchMove( event ) {
+
+					var x, y;
+
+					//移动端
+					if ( event.changedTouches ) {
+
+						x = event.changedTouches[ 0 ].pageX;
+						y = event.changedTouches[ 0 ].pageY;
+
+					} else {
+
+						x = event.clientX;
+						y = event.clientY;
+
+					}
+
+                    //通过鼠标点击的位置计算出mouseRaycaster所需要的点的位置，以屏幕中心为原点，值的范围为-1到1.
+					mouse.x = ( x / window.innerWidth ) * 2 - 1;//将 canvas 坐标系转换为 WebGL 坐标系
+					mouse.y = - ( y / window.innerHeight ) * 2 + 1;
+
+					checkIntersection();
+
+				}
+
+				function addSelectedObject( object ) {
+
+					selectedObjects = [];
+					selectedObjects.push( object );
+
+				}
+
+				function checkIntersection() {
+
+					raycaster.setFromCamera( mouse, camera );// raycaster的作用场景
+
+                    // .intersectObject ( object, recursive )检查射线和物体之间的所有交叉点（包含或不包含后代）。交叉点返回按距离排序，最接近的为第一个。返回一个交叉点对象数组
+                    // object — 用来检测和射线相交的物体。
+                    // recursive — 如果为true，它还检查所有后代。否则只检查该对象本身。缺省值为false。
+					var intersects = raycaster.intersectObjects( [ scene ], true );//从鼠标 mouse 位置发射线，选中 group 组中的objects ，并返回 objects 给 intersects
+
+					if ( intersects.length > 0 ) // 一旦 intersects不为空，intersects[0].object 就是鼠标选中的物体
+					{
+
+						var selectedObject = intersects[ 0 ].object;//碰到的第一个物体
+						addSelectedObject( selectedObject );
+						outlinePass.selectedObjects = selectedObjects;
+
+					} else {
+
+						// outlinePass.selectedObjects = [];
+
+					}
+
+				}
+
+			}
+
+			function onWindowResize() {
+
+				var width = window.innerWidth;
+				var height = window.innerHeight;
+
+				camera.aspect = width / height;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( width, height );
+				composer.setSize( width, height );
+
+				effectFXAA.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				stats.begin();
+
+				var timer = performance.now();
+
+				if ( params.rotate ) {
+
+					group.rotation.y = timer * 0.0001;
+
+				}
+
+				controls.update();
+
+				composer.render();
+
+				stats.end();
+
+			}
+
+		</script>
+	</body>
+</html>

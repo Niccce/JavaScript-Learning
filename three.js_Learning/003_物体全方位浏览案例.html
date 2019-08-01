@@ -115,10 +115,10 @@
         var textureLoader = new THREE.TextureLoader();
 
         //加载模型，以及模型预加载的函数
-        loader.load('model/elephant.obj', function (object) {
+        loader.load('models/elephant.obj', function (object) {
             //获取颜色贴图和凹凸贴图的路径
-            var colorMap = textureLoader.load('model/elephant.jpg');
-            var bumpMap = textureLoader.load('model/elephant.jpg');
+            var colorMap = textureLoader.load('models/elephant.jpg');
+            var bumpMap = textureLoader.load('models/elephant.jpg');
             //获取材质，材质函数在下面定义，传入参数 材质类型 颜色
             var faceMaterial = getMaterial('lambert', 'rgb(255, 255, 255)');
 

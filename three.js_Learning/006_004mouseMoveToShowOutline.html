@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>pointerlock例子修改成全方位碰撞</title>
+		<title>对004作修改，鼠标指着的物体边框高亮</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
@@ -62,6 +62,13 @@
 		<script src="js/three.js"></script>
 		<script src="js/controls/PointerLockControls.js"></script>
 
+		<script src="js/shaders/CopyShader.js"></script>
+		<script src="js/shaders/FXAAShader.js"></script>
+		<script src="js/postprocessing/EffectComposer.js"></script>
+		<script src="js/postprocessing/RenderPass.js"></script>
+		<script src="js/postprocessing/ShaderPass.js"></script>
+		<script src="js/postprocessing/OutlinePass.js"></script>
+
 		<div id="blocker">
 
 			<div id="instructions">
@@ -78,8 +85,11 @@
 
 			var objects = [];
 
-			var raycaster;
-			var upRaycaster;
+			var raycaster,upRaycaster;
+            var composer,effectFXAA, outlinePass;
+            var mouse = new THREE.Vector2();//new一个二维向量
+            var mouseRaycaster = new THREE.Raycaster();
+            var selectedObjects = [];
 
             var horizontalRaycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3(), 0, 10);
 
@@ -327,12 +337,65 @@
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 
-				//
 
-				window.addEventListener( 'resize', onWindowResize, false );
+                //*********************外轮廓***********************//
+
+                composer = new THREE.EffectComposer( renderer );
+
+                var renderPass = new THREE.RenderPass( scene, camera );
+                composer.addPass( renderPass );
+
+                outlinePass = new THREE.OutlinePass( new THREE.Vector2( window.innerWidth, window.innerHeight ), scene, camera );
+                outlinePass.edgeThickness=1.0;
+                outlinePass.edgeStrength=3.0;
+                outlinePass.visibleEdgeColor.set('#ffff00');
+                outlinePass.hiddenEdgeColor.set( '#190a05' );
+                composer.addPass( outlinePass );
+
+                effectFXAA = new THREE.ShaderPass( THREE.FXAAShader );//传入了THREE.FXAAShader着色器，用于拷贝渲染结果
+                effectFXAA.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
+                effectFXAA.renderToScreen = true;//将渲染结果返回到屏幕上
+                composer.addPass( effectFXAA );
+
+                window.addEventListener( 'resize', onWindowResize, false );
+                window.addEventListener( 'mousemove', onMousemove, false );
+
 
 			}
+            function addSelectedObject( object ) {
 
+                selectedObjects = [];
+                selectedObjects.push( object );
+
+            }
+
+            function onMousemove( event ) {
+
+			    //这两句可获得鼠标指向的位置的坐标
+                // mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+                // mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+                //这两句是屏幕中心的坐标
+                mouse.x = 0;
+                mouse.y = 0;
+
+                mouseRaycaster.setFromCamera( mouse, camera );
+
+                var intersects = mouseRaycaster.intersectObjects( objects );
+
+                if ( intersects.length > 0 )
+                {
+
+                    var selectedObject = intersects[ 0 ].object;
+                    addSelectedObject( selectedObject );
+                    outlinePass.selectedObjects = selectedObjects;
+
+                } else {
+
+                    // outlinePass.selectedObjects = [];
+                }
+
+            }
 			//浏览器窗口变化
 			function onWindowResize() {
 
@@ -340,6 +403,8 @@
 				camera.updateProjectionMatrix();
 
 				renderer.setSize( window.innerWidth, window.innerHeight );
+                composer.setSize( window.innerWidth, window.innerHeight );
+                effectFXAA.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
 
 			}
 
@@ -491,6 +556,7 @@
 				}
 
 				renderer.render( scene, camera );
+                composer.render();//注意这两句的顺序
 
 			}
 
