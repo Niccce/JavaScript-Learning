@@ -1,0 +1,72 @@
+
+body{
+    margin-top:-1em;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a, img {
+    border: 0;
+}
+
+.topHead{
+    height: 62px;
+    width: 100%;
+    background:rgba(0,0,0,1);
+}
+.topHead .logo{
+    position: absolute;
+    margin-top: 0.4em;
+    margin-left:2em;
+}
+/* nav1 */
+.nav1 {
+    position: relative;
+    height: 62px;
+    width: 100%;
+    margin: 0;
+    padding:0;
+
+}
+
+.nav1 li {
+    float: right;
+    margin-left: 9px;
+    /*  display: inline;*/
+    height: 62px;
+    line-height: 62px;
+    list-style: none;
+}
+
+.nav1 li a {
+    padding: 0 8px;
+    color: #d6d3d0;
+    font-weight: 700;
+    text-decoration: none;
+    height:60px;
+    font-stretch: condensed;
+    font: 15px "YaHei Consolas Hybrid", Helvetica, sans-serif, "新宋体";
+}
+
+.nav1 li a:hover {
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.nav1 li.active a {
+    font: 16px "YaHei Consolas Hybrid", Helvetica, sans-serif, "新宋体";
+}
+
+.nav1 .nav1-line {
+    position: absolute;
+    border-bottom: 2px solid #fae9f8;
+    height: 0;
+    overflow: hidden;
+    left: 0;
+    bottom: 0;
+}
+
+

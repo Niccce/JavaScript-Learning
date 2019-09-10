@@ -1,0 +1,50 @@
+/* 关于我们的品牌故事 */
+.brand-story{
+    display: block;
+}
+
+/*****************联系我们*****************/
+.works{
+    background: #fff;
+}
+.contact-text{
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.contactText{
+    text-align: center;
+    height: 18em;
+    padding-top: 6em;
+}
+.ser-first-grid h3 {
+    margin: 26px 0 10px 0;
+    color: #000;
+}
+.ser-first-grid p {
+    margin: 0;
+    color: #000;
+    font-size: 0.9em;
+    line-height: 1.9em;
+}
+#contact-address{
+    background-color: #000;
+}
+#contact-tel{
+    background-color: #000;
+}
+#contact-email{
+    background-color: #000;
+}
+#contact-qq{
+    background-color: #000000;
+}
+.contactUs.h3,.contactUs.h3{
+    font-size: 30px;
+}
+.contactUs.h5,.contactUs.h5 {
+    font-size: 20px;
+}
+/*****************百度地图*****************/
+.iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+.iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}

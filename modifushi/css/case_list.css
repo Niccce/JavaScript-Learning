@@ -1,0 +1,143 @@
+
+/*---------案例中心相关样式---------*/
+
+.head-img{
+    margin-top: 0px;
+    margin-bottom: 100px;
+    height: 450px;
+    overflow: hidden;
+    width: 100%;
+    padding: 0;
+}
+
+.head-img img{
+    width: 100%;
+}
+
+.tab-pane{
+    margin:0 15px;
+}
+
+.container ul{
+    list-style: none;
+}
+
+.tab-pane ul li{
+    width: 200px;
+    height: 250px;
+    float: left;
+    margin-left: 50px;
+    /*margin-top: 50px;*/
+    background-size: 110%;
+    background-position-x: 50%;
+    background-position-y: -20px;
+    background-repeat: no-repeat;
+}
+
+.goods-name{
+    float: left;
+    width: 200px;
+    height: 50px;
+    margin-top: 200px;
+    background-color: white;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+}
+
+.details{
+    margin-top: 4px;
+    width: 200px;
+    height: 200px;
+    background: rgba(0,0 ,0 ,.3);
+    display: none;
+    cursor: pointer;
+}
+
+.suit-3 .details{
+    margin-top: 0;
+}
+
+.fa-search{
+    float: left;
+    margin-top: -170px;
+    margin-left: 80px;
+    color: white;
+}
+
+a{
+    cursor: pointer;
+    color: black;
+}
+
+.suit-1, .suit-2, .suit-3, .suit-4{
+    transition: 0.5s;
+}
+
+.suit-1{
+    background-image: url('../images/9.jpg');
+}
+
+.suit-2{
+    background-image: url('../images/10.jpg');
+}
+.suit-3{
+    background-image: url('../images/男女款 (2).jpg');
+}
+.suit-4{
+    background-image: url('../images/男女款 (8).jpg');
+}
+
+#portfoliolist .portfolio {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    display: none;
+    float: left;
+    overflow: hidden;
+}
+
+#filters {
+    list-style: none;
+    text-align: center;
+}
+#filters li {
+    display: inline-block;
+    margin:0 10px;
+}
+/*#filters li:first-child{*/
+    /*margin: 0px;*/
+/*}*/
+#filters li span {
+    display: block;
+    padding: 4px 10px;
+    text-decoration: none;
+    font-size:1.2em;
+    color: black;
+    cursor: pointer;
+    text-transform: capitalize;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+#filters li span:hover{
+    color: #3da9ff;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+#filters li p {
+    display: block;
+    padding: 4px 10px;
+    text-decoration: none;
+    font-size:1.2em;
+    color: black;
+    text-transform: capitalize;
+}
+
+/*---------案例中心相关样式---------*/

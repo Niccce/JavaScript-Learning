@@ -1,0 +1,99 @@
+.mailForm{
+    width:100%;
+    height:540px;
+
+    /*    background: url("../images/bg.jpg") no-repeat ;
+        background-size:100%;*/
+}
+.bg{
+    width:100%;
+    background: url("../images/bg.jpg") no-repeat ;
+    background-size:100%;
+    filter: alpha(opacity=70);       /*IE识别*/
+    -moz-opacity: 0.7;                 /*Mozilla识别*/
+    opacity: 0.9;
+}
+.Textarea{
+    margin-left:1em;
+    margin-bottom: 2em;
+    padding-top: 0.1em;
+}
+.mailForm .innerForm{
+    min-height:25em;
+}
+.mailForm img{
+               /*FF识别*/
+    position:absolute;
+
+}
+.mailForm .innerForm .form-group{
+    min-height:4em;
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    border-radius: 0.5em;
+    -webkit-transition: border-color 0.25s;
+    transition: border-color 0.25s;
+    outline: none;
+    font-style: italic;
+    font-size:1em;
+    color:#b5b5b5;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-align: center;
+
+}
+.mailForm .innerForm .form-group input,
+.mailForm .innerForm .form-group textarea
+{
+    min-height:3.5em;
+    min-width: 25em;
+    border: 1px solid #b5b5b5;
+    font-size:1.1em;
+    font-style: italic;
+    margin:0;
+    float: left;
+
+}
+.mailForm .innerForm .form-group span,
+.mailForm .innerForm .form-group textarea{
+    float: left;
+    margin-top:1em;
+    font-size:1.1em;
+}
+.mailForm .innerForm .form-group input:focus  ,
+.mailForm .innerForm .form-group textarea:focus,
+.mailForm .innerForm .form-group input:hover  ,
+.mailForm .innerForm .form-group textarea:hover
+{
+    border-color: #909090;
+}
+.mailForm .innerForm .form-group a{
+    width:8em;
+    height:3em;
+    outline: none;
+    border: 1px solid #b5b5b5;
+    -webkit-transition: border-color 0.25s;
+    transition: border-color 0.25s;
+    font-size: 1.2em;
+    color: #6f6f6f;
+    padding:0;
+    text-align: center;
+    padding-top: 0.8em;
+
+}
+.mailForm .innerForm .form-group a:hover{
+    border-color: #6e6e6e;
+}
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    font-style: italic;
+    font-size:1.1em;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-style: italic;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-style: italic;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-style: italic;
+}
